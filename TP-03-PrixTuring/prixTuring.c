@@ -48,12 +48,35 @@ int scanLineAsInt() {
 	return buf;
 }
 
+typedef struct{
+	int year;
+	char* name;
+	char* study;
+}winner;
+
+
 
 int main(void)
 {
+	
 
 	int nbGagnants = scanLineAsInt();
 	printf("nbGagnants = %i\n",nbGagnants);
+
+	winner infos[];
+
+
+	for(i=1,i<nbGagnants,i++){
+		winner->year=scanLineAsInt();
+		winner->name=scanLine();
+		winner->study=scanLine();
+		infos[i]=winner;
+	}
+
+
+	
+
+
 
 	return EXIT_SUCCESS;
 }
