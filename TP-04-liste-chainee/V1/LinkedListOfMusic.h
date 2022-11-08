@@ -1,6 +1,7 @@
 #include <LinkedList.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 struct music{
@@ -14,3 +15,6 @@ struct music{
 };
 
 typedef struct music Music;
+
+void    
+
