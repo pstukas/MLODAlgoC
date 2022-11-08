@@ -37,7 +37,10 @@ date creerDateParCopie (date *d){
     return d;
 }
 
-date NewDate(){
+date* NewDate()
+{
+    date *d = (date*) malloc(sizeof(date));
+    intisaliseDate(d);
+    return d;
 
-    
 }
