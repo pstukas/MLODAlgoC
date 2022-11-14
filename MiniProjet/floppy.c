@@ -44,6 +44,7 @@ static Tubes tubes[MAX_TUBES*2] = { 0 };
 static Vector2 tubesPos[MAX_TUBES] = { 0 };
 static int tubesSpeedX = 0;
 static bool superfx = false;
+static int dashTime = 15;
 
 //------------------------------------------------------------------------------------
 // Module Functions Declaration (local)
@@ -99,6 +100,7 @@ void InitGame(void)
     floppy.radius = GetRandomValue(10,30);
     floppy.position = (Vector2){80, screenHeight/2 - floppy.radius};
     tubesSpeedX = 2;
+    dashTime = 15;
 
     for (int i = 0; i < MAX_TUBES; i++)
     {
@@ -137,6 +139,16 @@ void UpdateGame(void)
 
         if (!pause)
         {
+
+             if (dashTime > 0) dashTime -= 1;
+
+            if (IsKeyPressed('C') && dashTime == 0)
+            {
+
+                for (int i = 0; i < MAX_TUBES; i++) tubesPos[i].x -= 20 ;
+                dashTime = 60;
+            }
+
             for (int i = 0; i < MAX_TUBES; i++) tubesPos[i].x -= (((tubesSpeedX * score) + 100)/100)  ;
 
             for (int i = 0; i < MAX_TUBES*2; i += 2)
@@ -147,6 +159,8 @@ void UpdateGame(void)
 
             if (IsKeyDown(KEY_SPACE) && !gameOver) floppy.position.y -= 3;
             else floppy.position.y += 1;
+
+           
 
             // Check Collisions
             for (int i = 0; i < MAX_TUBES*2; i++)
@@ -205,7 +219,7 @@ void DrawGame(void)
 
             DrawText(TextFormat("%04i", score), 20, 20, 40, GRAY);
             DrawText(TextFormat("HI-SCORE: %04i", hiScore), 20, 70, 20, LIGHTGRAY);
-
+            DrawText(TextFormat("dash time: %.02f", (float)dashTime/60), 20, 130, 20, BLACK);
             if (pause) DrawText("GAME PAUSED", screenWidth/2 - MeasureText("GAME PAUSED", 40)/2, screenHeight/2 - 40, 40, GRAY);
         }
         else DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth()/2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20)/2, GetScreenHeight()/2 - 50, 20, GRAY);
