@@ -1,0 +1,1 @@
+J'ai décidé de modifier le code du jeu floppy en essayant de modifier la vitesse du jeu en fonction du score. De plus, la taille du joueur est aléatoire à chaque début de partie et le score est multiplié en fonction de la taille choisie.

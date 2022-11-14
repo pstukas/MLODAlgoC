@@ -14,7 +14,3 @@ struct music{
     int Year;
 };
 
-typedef struct music Music;
-
-void    
-
